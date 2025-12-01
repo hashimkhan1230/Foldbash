@@ -1,0 +1,218 @@
+/* General Page Styles */
+.pricing-page {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* Message Box */
+.subscription-message {
+  background-color: #e0f7fa;
+  color: #00796b;
+  border: 1px solid #00796b;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Toggle Buttons */
+.toggle-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.toggle-btn {
+  padding: 0.7rem 2rem;
+  margin: 0 0.5rem;
+  border: 2px solid #0d6efd;
+  border-radius: 25px;
+  background-color: #fff;
+  color: #0d6efd;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggle-btn.active {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+.toggle-btn:hover {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+/* Cards Wrapper */
+.cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* Plan Card */
+.plan-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  width: 280px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plan-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+/* Special Tag */
+.plan-card .tag {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: #ff3d00;
+  color: #fff;
+  padding: 0.3rem 0.8rem;
+  border-radius: 25px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Price */
+.price-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.price-box .strike {
+  text-decoration: line-through;
+  color: #888;
+  font-size: 1rem;
+}
+
+.plan-card h1 {
+  font-size: 2.2rem;
+  margin: 0.5rem 0;
+  color: #0d6efd;
+}
+
+.plan-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.plan-card p {
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.plan-card ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.plan-card ul li {
+  margin: 0.6rem 0;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Buttons */
+.plan-card .btn {
+  padding: 0.7rem 1.5rem;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.plan-card .btn.disabled {
+  background-color: #ccc;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.plan-card .go-btn {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+.plan-card .go-btn:hover {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+/* Payment Info */
+.payment-info {
+  margin-top: 3rem;
+  text-align: center;
+  background-color: #f1f8ff;
+  padding: 1.5rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #0d6efd;
+}
+
+.payment-info h3 {
+  margin-bottom: 1rem;
+  color: #0d6efd;
+}
+
+.payment-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+.payment-info ul li {
+  margin: 0.5rem 0;
+  font-weight: 500;
+}
+
+/* Footer with GitHub */
+.subscription-footer {
+  text-align: center;
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid #ccc;
+  font-size: 14px;
+  color: #555;
+}
+
+.subscription-footer a {
+  color: #0d6efd;
+  margin-left: 5px;
+  transition: color 0.3s ease;
+}
+
+.subscription-footer a:hover {
+  color: #094bb0;
+}
+/* Responsive */
+@media (max-width: 768px) {
+  .cards-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .toggle-box {
+    flex-direction: column;
+  }
+
+  .toggle-btn {
+    margin: 0.5rem 0;
+  }
+}
+
