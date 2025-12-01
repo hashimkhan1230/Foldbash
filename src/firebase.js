@@ -15,12 +15,13 @@ import { getStorage } from "firebase/storage";
 // 🔥 YOUR FIREBASE CONFIG (REPLACE THIS)
 // --------------------------------------
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyCtkta6uF2P2NGYMoTENrWLITMTs3d-RxE",
+  authDomain: "react-6bfb8.firebaseapp.com",
+  projectId: "react-6bfb8",
+  storageBucket: "react-6bfb8.firebasestorage.app",
+  messagingSenderId: "319557973594",
+  appId: "1:319557973594:web:95862872f4b978e2b44a63",
+  measurementId: "G-78G97WB9YC"
 };
 
 // Initialize Firebase
