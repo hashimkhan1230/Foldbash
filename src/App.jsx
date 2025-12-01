@@ -17,6 +17,8 @@ import HabitTracker from "./Components/HabitTracker";
 import TimeManagement from "./Components/TimeManagement";
 import Subscription from "./Components/Subscription";
 import About from "./pages/About";
+import AdminPanel  from "./Components/AdminPanel";
+
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -53,6 +55,7 @@ export default function App() {
         <Route path="/timemanagement" element={<TimeManagement />} />
         <Route path="/about" element={<About />} />
         <Route path="/subscription" element={<Subscription user={user} />} />
+        <Route path="/admin" element={<AdminPanel />} />
       </Routes>
     </BrowserRouter>
   );
