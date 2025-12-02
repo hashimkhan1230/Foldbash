@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
-<<<<<<< HEAD
 import { auth } from "./firebase";
-=======
 import { auth } from "./firebase";  // your firebase.js export
->>>>>>> 082f140e830c8daef64d2dc2bf312db9927d9fcb
 
 import Header from "./Components/Header";
-<<<<<<< HEAD
 import ChatSupport from "./Components/ChatSupport";
 import TicketSystem from "./Components/TicketSystem";
 
 // Pages
-=======
->>>>>>> 082f140e830c8daef64d2dc2bf312db9927d9fcb
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
@@ -28,14 +22,13 @@ import HabitTracker from "./Components/HabitTracker";
 import TimeManagement from "./Components/TimeManagement";
 import Subscription from "./Components/Subscription";
 import About from "./pages/About";
-<<<<<<< HEAD
+ 
 import AdminPanel from "./Components/AdminPanel";
 import Contact from "./pages/Contact";
 import Help from "./pages/Help";
-=======
+
 import AdminPanel  from "./Components/AdminPanel";
 
->>>>>>> 082f140e830c8daef64d2dc2bf312db9927d9fcb
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -65,7 +58,6 @@ export default function App() {
   };
 
   return (
-<<<<<<< HEAD
     <>
       <BrowserRouter>
         {/* HEADER */}
@@ -143,28 +135,5 @@ export default function App() {
         <ChatSupport user={user} />
       </div>
     </>
-=======
-    <BrowserRouter>
-      <Header user={user} onLogout={handleLogout} />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/todos" element={<Todos />} />
-        <Route path="/login" element={<Login setUser={setUser} />} />
-        <Route path="/signup" element={<Signup setUser={setUser} />} />
-        <Route path="/profile" element={<Profile user={user} />} />
-
-        <Route path="/taskmanagement" element={<TaskManagement />} />
-        <Route path="/projectmanagement" element={<ProjectManagement />} />
-        <Route path="/teamwork" element={<Teamwork />} />
-        <Route path="/notes" element={<Notes />} />
-        <Route path="/habittracker" element={<HabitTracker />} />
-        <Route path="/timemanagement" element={<TimeManagement />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/subscription" element={<Subscription user={user} />} />
-        <Route path="/admin" element={<AdminPanel />} />
-      </Routes>
-    </BrowserRouter>
->>>>>>> 082f140e830c8daef64d2dc2bf312db9927d9fcb
   );
 }
