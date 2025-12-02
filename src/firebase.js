@@ -1,8 +1,19 @@
-// firebase.js
-import { initializeApp } from "firebase/app";
-import { getFirestore, serverTimestamp } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+// firebase.js (FULL CORRECT SETUP)
 
+import { initializeApp } from "firebase/app";
+import { 
+  getAuth,
+  setPersistence,
+  browserLocalPersistence 
+} from "firebase/auth";
+
+import { getFirestore } from "firebase/firestore";
+import { getFunctions } from "firebase/functions";
+import { getStorage } from "firebase/storage";
+
+// --------------------------------------
+// 🔥 YOUR FIREBASE CONFIG (REPLACE THIS)
+// --------------------------------------
 const firebaseConfig = {
   apiKey: "AIzaSyCtkta6uF2P2NGYMoTENrWLITMTs3d-RxE",
   authDomain: "react-6bfb8.firebaseapp.com",
@@ -16,15 +27,22 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Firestore
-export const db = getFirestore(app);
-
-export const ts = serverTimestamp;   // ← ⭐ ADD THIS LINE ⭐
-
-// Add Timestamp Export (VERY IMPORTANT)
-// export const ts = serverTimestamp;
-
 // Auth
-export const auth = getAuth(app);
+const auth = getAuth(app);
 
-export default app;
+// 👉 Login Refresh Persistence (MUST HAVE)
+setPersistence(auth, browserLocalPersistence);
+
+// Firestore
+const db = getFirestore(app);
+
+// Cloud Functions
+const functions = getFunctions(app);
+
+// Storage
+const storage = getStorage(app);
+
+// --------------------------------------
+// EXPORTS
+// --------------------------------------
+export { app, auth, db, functions, storage };

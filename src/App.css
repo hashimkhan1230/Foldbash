@@ -1,86 +1,116 @@
-/* Navbar */
+/* --------------------------
+   NAVBAR GENERAL STYLING
+--------------------------- */
 .custom-navbar {
-  background-color: #0d6efd;
-  padding: 0.5rem 1rem;
+  background-color: #0d6efd !important; /* Bootstrap default blue */
+  transition: all 0.3s ease-in-out;
 }
 
-.navbar-brand {
-  font-size: 1.5rem;
-  color: #fff !important;
-  display: flex;
-  align-items: center;
+.custom-navbar-container {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
 }
 
-.navbar-brand:hover {
-  color: #fff;
-}
-
-.nav-link {
-  color: #f8f9fa !important;
-  margin-right: 1rem;
-}
-
-.nav-link:hover {
-  color: #e2e6ea !important;
-}
-
-/* Right section */
-.d-flex.align-items-center img {
+/* Profile image */
+.profile-img {
   width: 32px;
   height: 32px;
   border-radius: 50%;
+  border: 2px solid white;
   object-fit: cover;
-  border: 2px solid #fff;
 }
 
-.d-flex.align-items-center span {
-  color: #fff;
-  font-weight: 500;
+/* --------------------------
+   MOBILE MENU ANIMATION
+--------------------------- */
+.animated-menu {
+  transform-origin: top;
+  transform: scaleY(0);
+  opacity: 0;
+  transition: transform 0.25s ease-out, opacity 0.25s ease-out;
 }
 
-/* Buttons */
-.btn-outline-light {
-  border-color: #fff;
-  color: #fff;
+.animated-menu.show {
+  transform: scaleY(1);
+  opacity: 1;
 }
 
-.btn-outline-light:hover {
-  background-color: #fff;
-  color: #0d6efd;
+/* Fade animation for links */
+.nav-link {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-.btn-primary {
-  background-color: #fff;
-  color: #0d6efd;
-  border: none;
+.animated-menu.show .nav-link {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.btn-primary:hover {
-  background-color: #e2e6ea;
-  color: #0d6efd;
+/* Hover */
+.nav-link:hover {
+  opacity: 0.8;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .d-flex.align-items-center {
-    flex-direction: column;
-    margin-top: 0.5rem;
+/* Hamburger button */
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.7) !important;
+  transition: 0.25s ease;
+}
+
+.navbar-toggler:hover {
+  transform: scale(1.1);
+  border-color: white !important;
+}
+
+/* --------------------------
+   DESKTOP FIX (VERY IMPORTANT)
+--------------------------- */
+
+/* Desktop (≥ 992px) → always visible menu */
+@media (min-width: 992px) {
+  .animated-menu {
+    transform: scaleY(1) !important;
+    opacity: 1 !important;
+    transition: none !important;
   }
 
-  .d-flex.align-items-center span {
-    margin-left: 0;
-    margin-top: 0.3rem;
+  .nav-link {
+    opacity: 1 !important;
+    transform: none !important;
   }
 
-  .navbar-nav {
-    margin-top: 0.5rem;
+  /* Hide hamburger on desktop */
+  .navbar-toggler {
+    display: none !important;
   }
 }
 
-body, html, #root {
-  background-color: #0e0e0e; /* Dark black background */
-  color: white; /* Default text color */
-  height: 100%;
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* ------------------------------
+   LOGIN MESSAGE POPUP
+------------------------------- */
+.login-warning {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: #0b3d91;
+  padding: 15px 20px;
+  color: white;
+  border-radius: 12px;
+  font-weight: bold;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  animation: slideIn 0.4s ease-out;
+  z-index: 2000;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }

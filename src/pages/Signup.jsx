@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { db } from "../firebase";
+import { doc, setDoc } from "firebase/firestore";
 import "./Auth.css";
 import { FaGithub } from "react-icons/fa";
 
@@ -15,9 +17,29 @@ export default function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      // UPDATE USER PROFILE (NAME)
       await updateProfile(userCredential.user, { displayName: name });
+
+      // 🔥 CREATE FIRESTORE USER DOCUMENT
+      await setDoc(
+        doc(db, "users", userCredential.user.uid),
+        {
+          name: name,
+          email: email,
+          plan: "Free", // DEFAULT PLAN
+          createdAt: Date.now(),
+        },
+        { merge: true }
+      );
+
       setMessage(`✅ Sign Up successful! Welcome, ${name}. Redirecting to login...`);
+
       setTimeout(() => {
         navigate("/login");
       }, 2000);
@@ -30,6 +52,7 @@ export default function Signup() {
     <div className="auth-wrapper">
       <div className="auth-box">
         <h2 className="auth-title">Sign Up</h2>
+
         <form onSubmit={handleSignup}>
           <input
             type="text"
@@ -38,6 +61,7 @@ export default function Signup() {
             onChange={(e) => setName(e.target.value)}
             required
           />
+
           <input
             type="email"
             placeholder="Email"
@@ -45,6 +69,7 @@ export default function Signup() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
+
           <input
             type="password"
             placeholder="Password"
@@ -52,30 +77,31 @@ export default function Signup() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+
           <button type="submit" className="auth-btn">Sign Up</button>
         </form>
+
         {message && <p className="auth-message">{message}</p>}
+
         <p className="auth-text">
           Already have an account? <a href="/login">Login</a>
         </p>
-
       </div>
-      
-         {/* Footer: Outside auth-box */}
-              <footer className="auth-footer">
-                <p>
-                  Developed by Hashim Khan&nbsp;
-                  <a
-                    href="https://github.com/your-github-username"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaGithub size={18} />
-                  </a>
-                </p>
-                <p>© 2025 FoldBash — All Rights Reserved</p>
-              </footer>
+
+      {/* FOOTER */}
+      <footer className="auth-footer">
+        <p>
+          Developed by Hashim Khan&nbsp;
+          <a
+            href="https://github.com/your-github-username"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaGithub size={18} />
+          </a>
+        </p>
+        <p>© 2025 FoldBash — All Rights Reserved</p>
+      </footer>
     </div>
-    
   );
 }

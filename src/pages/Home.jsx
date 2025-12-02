@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FaTasks, FaChartLine, FaLock, FaGithub } from "react-icons/fa";
 import './Home.css';
 
+
 export default function Home() {
   const [message, setMessage] = useState(""); // ✅ state define
 
@@ -13,6 +14,7 @@ export default function Home() {
     // Remove message after 2 seconds
     setTimeout(() => setMessage(""), 2000);
   };
+  
 
   return (
     <div className="home-page">

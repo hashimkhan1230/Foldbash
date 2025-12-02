@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import profilePic from "../assets/profile.png";
+import { doc, onSnapshot } from "firebase/firestore";
+import { db } from "../firebase";
 
 export default function Profile({ user, onLogout }) {
+  const [plan, setPlan] = useState("Free");
+
+  // 🔥 Fetch Subscription Plan Live From Firestore
+  useEffect(() => {
+    if (!user) return;
+
+    const unsub = onSnapshot(doc(db, "users", user.uid), (snap) => {
+      if (snap.exists()) {
+        const data = snap.data();
+        setPlan(data.plan || "Free");
+      }
+    });
+
+    return () => unsub();
+  }, [user]);
+
+  // NOT LOGGED IN
   if (!user) {
     return (
       <div className="container mt-5">
@@ -9,6 +28,20 @@ export default function Profile({ user, onLogout }) {
       </div>
     );
   }
+
+  // Badge color
+  const planColor =
+    plan === "Free"
+      ? "gray"
+      : plan === "Premium"
+      ? "#ffd700"
+      : plan === "Go"
+      ? "#00eaff"
+      : plan === "Plus"
+      ? "#a855f7"
+      : plan === "Pro"
+      ? "#ff4444"
+      : "white";
 
   return (
     <div className="container d-flex justify-content-center mt-5">
@@ -18,9 +51,9 @@ export default function Profile({ user, onLogout }) {
           width: "100%",
           maxWidth: "450px",
           borderRadius: "20px",
-          background: "#0e0e0e", // BLACK BOX
+          background: "#0e0e0e",
           color: "white",
-          border: "1px solid #1a73e8", // Blue border
+          border: "1px solid #1a73e8",
         }}
       >
         {/* PROFILE IMAGE */}
@@ -33,7 +66,7 @@ export default function Profile({ user, onLogout }) {
               height: "120px",
               borderRadius: "50%",
               objectFit: "cover",
-              border: "3px solid #1a73e8", // Blue ring
+              border: "3px solid #1a73e8",
             }}
           />
 
@@ -47,17 +80,16 @@ export default function Profile({ user, onLogout }) {
             {user.email}
           </p>
 
-          {/* PHONE NUMBER */}
+          {/* PHONE */}
           <p className="text-light mt-1">
             <strong style={{ color: "#1a73e8" }}>Phone:</strong>{" "}
             <span style={{ opacity: 0.9 }}>Add Phone Number</span>
           </p>
         </div>
 
-        {/* LINE DIVIDER */}
         <hr style={{ borderColor: "#333" }} />
 
-        {/* SUBSCRIPTION BOX */}
+        {/* SUBSCRIPTION SECTION */}
         <div className="mt-3">
           <h5 className="fw-bold" style={{ color: "#1a73e8" }}>
             Subscription
@@ -71,11 +103,15 @@ export default function Profile({ user, onLogout }) {
             }}
           >
             <p className="m-0">
-              <strong style={{ color: "#1a73e8" }}>Status:</strong> Free Plan
+              <strong style={{ color: "#1a73e8" }}>Status:</strong>{" "}
+              <span style={{ color: planColor, fontWeight: "bold" }}>
+                {plan} Plan
+              </span>
             </p>
+
             <p className="m-0 mt-1">
               <strong style={{ color: "#1a73e8" }}>Upgrade:</strong>{" "}
-              <span className="text-primary">Coming Soon 🚀</span>
+              <span className="text-primary">Available 🚀</span>
             </p>
           </div>
         </div>
