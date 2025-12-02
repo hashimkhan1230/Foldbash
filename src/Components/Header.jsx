@@ -24,20 +24,34 @@ export default function Header({ user, onLogout }) {
     }
   };
 
+<<<<<<< HEAD
   // ---------- AUTO CLOSE ----------
+=======
+  // ---------- AUTO-CLOSE NAVBAR WITHOUT BREAKING MESSAGE ----------
+>>>>>>> 082f140e830c8daef64d2dc2bf312db9927d9fcb
   useEffect(() => {
     const navCollapse = document.getElementById("mainNavbar");
 
     const handleClickOutside = (e) => {
+<<<<<<< HEAD
       if (msgRef.current && msgRef.current.contains(e.target)) return;
 
+=======
+      // IMPORTANT: If user clicks on message popup → don't close navbar
+      if (msgRef.current && msgRef.current.contains(e.target)) return;
+
+      // Close navbar normally
+>>>>>>> 082f140e830c8daef64d2dc2bf312db9927d9fcb
       if (navCollapse && navCollapse.classList.contains("show")) {
         navCollapse.classList.remove("show");
       }
     };
 
     const handleScroll = () => {
+<<<<<<< HEAD
       const navCollapse = document.getElementById("mainNavbar");
+=======
+>>>>>>> 082f140e830c8daef64d2dc2bf312db9927d9fcb
       if (navCollapse && navCollapse.classList.contains("show")) {
         navCollapse.classList.remove("show");
       }
@@ -83,6 +97,7 @@ export default function Header({ user, onLogout }) {
                     }}>
                     Tasks
                   </Link>
+<<<<<<< HEAD
                 </li>
 
                 <li className="nav-item">
@@ -103,6 +118,17 @@ export default function Header({ user, onLogout }) {
                   <Link className="nav-link" to="/Help" onClick={closeNavbar}>Help</Link>
                 </li>
 
+=======
+                </li>
+
+                <li className="nav-item">
+                  <Link className="nav-link" to="/About" onClick={closeNavbar}>About</Link>
+                </li>
+
+                <li className="nav-item">
+                  <Link className="nav-link" to="/Subscription" onClick={closeNavbar}>Subscription</Link>
+                </li>
+>>>>>>> 082f140e830c8daef64d2dc2bf312db9927d9fcb
               </ul>
 
               <div className="d-flex align-items-center">
@@ -114,10 +140,14 @@ export default function Header({ user, onLogout }) {
                       <span className="ms-2">{user.displayName || user.email.split("@")[0]}</span>
                     </Link>
 
+<<<<<<< HEAD
                     <button
                       className="btn btn-outline-light btn-sm"
                       onClick={() => { onLogout(); closeNavbar(); }}
                     >
+=======
+                    <button className="btn btn-outline-light btn-sm" onClick={() => { onLogout(); closeNavbar(); }}>
+>>>>>>> 082f140e830c8daef64d2dc2bf312db9927d9fcb
                       Logout
                     </button>
                   </>
@@ -139,7 +169,11 @@ export default function Header({ user, onLogout }) {
         </nav>
       </header>
 
+<<<<<<< HEAD
       {/* MESSAGE POPUP */}
+=======
+      {/* 🔥 MESSAGE NOW WORKS ALWAYS */}
+>>>>>>> 082f140e830c8daef64d2dc2bf312db9927d9fcb
       {showMsg && (
         <div ref={msgRef} className="login-warning">
           Bhai, meri baat sun!  
