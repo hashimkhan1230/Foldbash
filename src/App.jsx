@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
+<<<<<<< HEAD
+=======
+import { auth } from "./firebase";  // your firebase.js export
+>>>>>>> 8ccf61fbeb196cb94d9dda8f320f18c9284d28dd
 
 // Components
 import Header from "./Components/Header";
@@ -24,9 +28,18 @@ import TimeManagement from "./Components/TimeManagement";
 
 import Subscription from "./Components/Subscription";
 import About from "./pages/About";
+<<<<<<< HEAD
 import AdminPanel from "./Components/AdminPanel";
 import Contact from "./pages/Contact";
 import Help from "./pages/Help";
+=======
+ 
+import AdminPanel from "./Components/AdminPanel";
+import Contact from "./pages/Contact";
+import Help from "./pages/Help";
+
+import AdminPanel  from "./Components/AdminPanel";
+>>>>>>> 8ccf61fbeb196cb94d9dda8f320f18c9284d28dd
 
 
 export default function App() {
