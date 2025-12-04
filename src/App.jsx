@@ -2,22 +2,16 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
-<<<<<<< HEAD
-=======
-import { auth } from "./firebase";  // your firebase.js export
->>>>>>> 8ccf61fbeb196cb94d9dda8f320f18c9284d28dd
 
 // Components
 import Header from "./Components/Header";
 import ChatSupport from "./Components/ChatSupport";
-
 
 // Pages
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-
 import Todos from "./Components/Todos";
 import TaskManagement from "./Components/TaskManagement";
 import ProjectManagement from "./Components/ProjectManagement";
@@ -25,33 +19,21 @@ import Teamwork from "./Components/Teamwork";
 import Notes from "./Components/Notes";
 import HabitTracker from "./Components/HabitTracker";
 import TimeManagement from "./Components/TimeManagement";
-
 import Subscription from "./Components/Subscription";
 import About from "./pages/About";
-<<<<<<< HEAD
 import AdminPanel from "./Components/AdminPanel";
 import Contact from "./pages/Contact";
 import Help from "./pages/Help";
-=======
- 
-import AdminPanel from "./Components/AdminPanel";
-import Contact from "./pages/Contact";
-import Help from "./pages/Help";
-
-import AdminPanel  from "./Components/AdminPanel";
->>>>>>> 8ccf61fbeb196cb94d9dda8f320f18c9284d28dd
-
 
 export default function App() {
   const [user, setUser] = useState(null);
   const [chatOpen, setChatOpen] = useState(false);
 
-  // Firebase: Keep user logged in
+  // ✔ Keep user logged in after refresh
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
-
     return () => unsub();
   }, []);
 
@@ -60,7 +42,6 @@ export default function App() {
   return (
     <>
       <BrowserRouter>
-        
         {/* HEADER */}
         <Header user={user} onLogout={handleLogout} />
 
@@ -84,11 +65,8 @@ export default function App() {
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/help" element={<Help />} />
-         
-
         </Routes>
       </BrowserRouter>
-
 
       {/* FLOATING CHAT BUTTON */}
       <div
@@ -115,7 +93,7 @@ export default function App() {
         {chatOpen ? "✖" : "💬"}
       </div>
 
-      {/* CHAT BOX (SLIDE OPEN) */}
+      {/* CHAT SUPPORT BOX */}
       <div
         style={{
           position: "fixed",

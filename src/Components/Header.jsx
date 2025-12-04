@@ -23,7 +23,7 @@ export default function Header({ user, onLogout }) {
     }
   };
 
-  // ---------- AUTO-CLOSE NAVBAR WITHOUT BREAKING MESSAGE ----------
+  // ---------- AUTO-CLOSE NAVBAR ----------
   useEffect(() => {
     const navCollapse = document.getElementById("mainNavbar");
 
@@ -66,7 +66,12 @@ export default function Header({ user, onLogout }) {
               Fold<span className="fw-bold">Bash</span>
             </Link>
 
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#mainNavbar"
+            >
               <span className="navbar-toggler-icon"></span>
             </button>
 
@@ -74,41 +79,79 @@ export default function Header({ user, onLogout }) {
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
 
                 <li className="nav-item">
-                  <Link className="nav-link" to="/Todos"
+                  <Link
+                    className="nav-link"
+                    to="/Todos"
                     onClick={(e) => {
                       handleTasksClick(e);
                       closeNavbar();
-                    }}>
+                    }}
+                  >
                     Tasks
                   </Link>
                 </li>
 
                 <li className="nav-item">
-                  <Link className="nav-link" to="/About" onClick={closeNavbar}>About</Link>
+                  <Link className="nav-link" to="/About" onClick={closeNavbar}>
+                    About
+                  </Link>
                 </li>
 
                 <li className="nav-item">
-                  <Link className="nav-link" to="/Subscription" onClick={closeNavbar}>Subscription</Link>
+                  <Link className="nav-link" to="/Subscription" onClick={closeNavbar}>
+                    Subscription
+                  </Link>
+                </li>
+
+                {/* ⭐ Added CONTACT */}
+                <li className="nav-item">
+                  <Link className="nav-link" to="/contact" onClick={closeNavbar}>
+                    Contact
+                  </Link>
+                </li>
+
+                {/* ⭐ Added HELP */}
+                <li className="nav-item">
+                  <Link className="nav-link" to="/help" onClick={closeNavbar}>
+                    Help
+                  </Link>
                 </li>
               </ul>
 
               <div className="d-flex align-items-center">
-
                 {user ? (
                   <>
-                    <Link to="/Profile" className="d-flex align-items-center text-white me-3" onClick={closeNavbar}>
-                      <img src={user.photoURL || profilePic} className="profile-img" alt="Profile" />
-                      <span className="ms-2">{user.displayName || user.email.split("@")[0]}</span>
+                    <Link
+                      to="/Profile"
+                      className="d-flex align-items-center text-white me-3"
+                      onClick={closeNavbar}
+                    >
+                      <img
+                        src={user.photoURL || profilePic}
+                        className="profile-img"
+                        alt="Profile"
+                      />
+                      <span className="ms-2">
+                        {user.displayName || user.email.split("@")[0]}
+                      </span>
                     </Link>
 
-                    <button className="btn btn-outline-light btn-sm" onClick={() => { onLogout(); closeNavbar(); }}>
+                    <button
+                      className="btn btn-outline-light btn-sm"
+                      onClick={() => {
+                        onLogout();
+                        closeNavbar();
+                      }}
+                    >
                       Logout
                     </button>
                   </>
                 ) : (
                   <>
                     <Link to="/login" onClick={closeNavbar}>
-                      <button className="btn btn-outline-light btn-sm me-2">Login</button>
+                      <button className="btn btn-outline-light btn-sm me-2">
+                        Login
+                      </button>
                     </Link>
 
                     <Link to="/signup" onClick={closeNavbar}>
@@ -116,14 +159,12 @@ export default function Header({ user, onLogout }) {
                     </Link>
                   </>
                 )}
-
               </div>
             </div>
           </div>
         </nav>
       </header>
 
-      {/* MESSAGE */}
       {showMsg && (
         <div ref={msgRef} className="login-warning">
           Bhai, meri baat sun!  
