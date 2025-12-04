@@ -22,8 +22,9 @@ export default function Contact() {
           <div className="col-md-5 mb-4">
             <h4 style={{ color: "#1a73e8" }}>Get in Touch</h4>
 
-            <p><FaEnvelope color="#1a73e8" /> support@foldbash.com</p>
-            <p><FaPhoneAlt color="#1a73e8" /> +91 98765 43210</p>
+            <p><FaEnvelope color="#1a73e8" /> Hashimkhanmai0@gmail.com</p>
+            
+            <p><FaPhoneAlt color="#1a73e8" /> +91 8859876802</p>
             <p><FaMapMarkerAlt color="#1a73e8" /> New Delhi, India</p>
 
             <h5 className="mt-4" style={{ color: "#1a73e8" }}>Follow Us</h5>
