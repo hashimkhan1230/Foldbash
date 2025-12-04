@@ -1,24 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
-<<<<<<< HEAD
 import { auth } from "./firebase";
-=======
-import { auth } from "./firebase";  // your firebase.js export
->>>>>>> 082f140e830c8daef64d2dc2bf312db9927d9fcb
 
+// Components
 import Header from "./Components/Header";
-<<<<<<< HEAD
 import ChatSupport from "./Components/ChatSupport";
-import TicketSystem from "./Components/TicketSystem";
+
 
 // Pages
-=======
->>>>>>> 082f140e830c8daef64d2dc2bf312db9927d9fcb
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
+
 import Todos from "./Components/Todos";
 import TaskManagement from "./Components/TaskManagement";
 import ProjectManagement from "./Components/ProjectManagement";
@@ -26,23 +21,19 @@ import Teamwork from "./Components/Teamwork";
 import Notes from "./Components/Notes";
 import HabitTracker from "./Components/HabitTracker";
 import TimeManagement from "./Components/TimeManagement";
+
 import Subscription from "./Components/Subscription";
 import About from "./pages/About";
-<<<<<<< HEAD
 import AdminPanel from "./Components/AdminPanel";
 import Contact from "./pages/Contact";
 import Help from "./pages/Help";
-=======
-import AdminPanel  from "./Components/AdminPanel";
 
->>>>>>> 082f140e830c8daef64d2dc2bf312db9927d9fcb
 
 export default function App() {
   const [user, setUser] = useState(null);
-  const [helpOpen, setHelpOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
 
-  // Keep user logged in on refresh
+  // Firebase: Keep user logged in
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -51,29 +42,14 @@ export default function App() {
     return () => unsub();
   }, []);
 
-  // Firebase keeps user logged in after refresh
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser); // user will stay logged in
-    });
-
-    return () => unsub();
-  }, []);
-
-  const handleLogout = () => {
-    auth.signOut();
-  };
+  const handleLogout = () => auth.signOut();
 
   return (
-<<<<<<< HEAD
     <>
       <BrowserRouter>
+        
         {/* HEADER */}
-        <Header
-          user={user}
-          onLogout={handleLogout}
-          openHelp={() => setHelpOpen(true)}
-        />
+        <Header user={user} onLogout={handleLogout} />
 
         {/* ROUTES */}
         <Routes>
@@ -95,15 +71,13 @@ export default function App() {
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/help" element={<Help />} />
+         
 
-          {/* TICKETS PAGE */}
-          <Route path="/tickets" element={<TicketSystem />} />
         </Routes>
       </BrowserRouter>
 
-    
 
-      {/* 🔥 FLOATING CHAT BUTTON */}
+      {/* FLOATING CHAT BUTTON */}
       <div
         onClick={() => setChatOpen(!chatOpen)}
         style={{
@@ -128,7 +102,7 @@ export default function App() {
         {chatOpen ? "✖" : "💬"}
       </div>
 
-      {/* 🔥 CHAT SUPPORT BOX (SLIDE OPEN) */}
+      {/* CHAT BOX (SLIDE OPEN) */}
       <div
         style={{
           position: "fixed",
@@ -143,28 +117,5 @@ export default function App() {
         <ChatSupport user={user} />
       </div>
     </>
-=======
-    <BrowserRouter>
-      <Header user={user} onLogout={handleLogout} />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/todos" element={<Todos />} />
-        <Route path="/login" element={<Login setUser={setUser} />} />
-        <Route path="/signup" element={<Signup setUser={setUser} />} />
-        <Route path="/profile" element={<Profile user={user} />} />
-
-        <Route path="/taskmanagement" element={<TaskManagement />} />
-        <Route path="/projectmanagement" element={<ProjectManagement />} />
-        <Route path="/teamwork" element={<Teamwork />} />
-        <Route path="/notes" element={<Notes />} />
-        <Route path="/habittracker" element={<HabitTracker />} />
-        <Route path="/timemanagement" element={<TimeManagement />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/subscription" element={<Subscription user={user} />} />
-        <Route path="/admin" element={<AdminPanel />} />
-      </Routes>
-    </BrowserRouter>
->>>>>>> 082f140e830c8daef64d2dc2bf312db9927d9fcb
   );
 }
