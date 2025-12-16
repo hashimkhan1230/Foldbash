@@ -54,7 +54,7 @@ export default function About() {
         <p>
           Developed by Hashim Khan&nbsp;
           <a
-            href="https://github.com/your-github-username"
+            href="https://github.com/hashimkhan1230"
             target="_blank"
             rel="noopener noreferrer"
           >
